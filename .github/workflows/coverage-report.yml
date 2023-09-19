@@ -45,6 +45,12 @@ jobs:
             reportgenerator -reports:coverage/*/coverage.cobertura.xml -targetdir:coveragereporthtml
       - name: Setup Pages
         uses: actions/configure-pages@v3
+      - name: Add Coverage PR Comment
+        uses: marocchino/sticky-pull-request-comment@v2
+        if: github.event_name == 'pull_request'
+        with:
+            recreate: true
+            path: code-coverage-results.md
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
