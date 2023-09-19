@@ -40,8 +40,9 @@ jobs:
             format: 'markdown'
             output: 'both'
       - name: Convert report to html
-      - run: dotnet tool install -g dotnet-reportgenerator-globaltool
-      - run: reportgenerator -reports:coverage/*/coverage.cobertura.xml -targetdir:coveragereporthtml
+        run: |
+            dotnet tool install -g dotnet-reportgenerator-globaltool
+            reportgenerator -reports:coverage/*/coverage.cobertura.xml -targetdir:coveragereporthtml
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
